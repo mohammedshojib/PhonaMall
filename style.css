@@ -34,6 +34,9 @@
   margin-top: 20px;
   margin: auto;
 }
+.img-fluid {
+  width: 100%;
+}
 /* meadia queries */
 @media only screen and (max-width: 600px) {
   #allPhone {
