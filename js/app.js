@@ -106,10 +106,10 @@ const detailsPopUp = (info) => {
           }</p>
           <p class="card-text"><strong>"Others"</strong>
           <ul>
-          <li>${info.others.WLAN}</li>
-          <li>${info.others.Bluetooth}</li>
-          <li>${info.others.GPS}</li>
-          <li>${info.others.NFC}</li>
+          <li>${info?.others?.WLAN || "others not found"}</li>
+          <li>${info?.others?.Bluetooth || "others not found"}</li>
+          <li>${info?.others?.GPS || "others not found"}</li>
+          <li>${info?.others?.NFC || "others not found"}</li>
         </ul></p>
         
         </div>
