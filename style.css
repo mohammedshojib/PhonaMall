@@ -14,6 +14,7 @@
   width: 80%;
   margin: auto;
   text-align: center;
+  justify-content: center;
 }
 #allPhone img {
   display: flex;
@@ -21,7 +22,7 @@
   margin: auto;
 }
 #detailsContainer {
-  width: 80%;
+  width: 90%;
   margin: auto;
   text-align: center;
   align-items: center;
@@ -30,4 +31,12 @@
   display: flex;
   margin-top: 20px;
   margin: auto;
+}
+@media only screen and (max-width: 600px) {
+  #allPhone {
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+  }
 }
