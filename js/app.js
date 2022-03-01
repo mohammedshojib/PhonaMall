@@ -10,29 +10,38 @@ const buttonSearch = () => {
   parentDiv.textContent = "";
 
   // <====! Error Handeling  ====>
-
-  if (searchVal == "iphone" || searchVal == "samsung" || searchVal == "oppo") {
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchVal}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((myData) => showPhones(myData.data));
-  } else {
-    searchValue.setAttribute("placeHolder", "please enter a phone name");
+  if (searchVal == 0) {
     alert("please enter a phone name");
     const parentDiv = document.getElementById("allPhone");
     const div = document.createElement("div");
 
     div.innerHTML = `
         <div class="alert alert-danger" role="alert">
-        please enter a correct phone name!
+        please enter a correct Value!
     </div>`;
     parentDiv.appendChild(div);
+  } else {
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchVal}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((myData) => showPhones(myData.data));
   }
 };
 
 // <====! showPhones  ====>
 
 const showPhones = (phones) => {
+  if (phones.length === 0) {
+    alert("please enter a phone name");
+    const parentDiv = document.getElementById("allPhone");
+    const div = document.createElement("div");
+
+    div.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+        please enter a correct device name!
+    </div>`;
+    parentDiv.appendChild(div);
+  }
   const firstTwintyData = phones.slice(0, 20);
   for (const phone of firstTwintyData) {
     const parentDiv = document.getElementById("allPhone");
@@ -57,7 +66,6 @@ const showPhones = (phones) => {
 
 const details = (id) => {
   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
-  // console.log(url);
   fetch(url)
     .then((res) => res.json())
     .then((data) => detailsPopUp(data.data));
