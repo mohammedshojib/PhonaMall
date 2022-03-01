@@ -9,7 +9,7 @@ const buttonSearch = () => {
   const parentDiv = document.getElementById("allPhone");
   parentDiv.textContent = "";
 
-  // <====! Error Handeling  ====>
+  // <====! Error Handeling (basics)  ====>
   if (searchVal == 0) {
     alert("please enter a phone name");
     const parentDiv = document.getElementById("allPhone");
@@ -28,7 +28,7 @@ const buttonSearch = () => {
   }
 };
 
-// <====! showPhones  ====>
+// <====! showPhones (error handling)  ====>
 
 const showPhones = (phones) => {
   if (phones.length === 0) {
@@ -42,6 +42,8 @@ const showPhones = (phones) => {
     </div>`;
     parentDiv.appendChild(div);
   }
+  // <===== Data filter =====>
+
   const firstTwintyData = phones.slice(0, 20);
   for (const phone of firstTwintyData) {
     const parentDiv = document.getElementById("allPhone");
