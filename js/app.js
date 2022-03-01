@@ -78,43 +78,46 @@ const detailsPopUp = (info) => {
   hello.textContent = "";
   const div = document.createElement("div");
   div.innerHTML = `
-    <div class="col">
-      <div id="detailsContainer" class="card text-center">
-        <img src="${
-          info.image
-        }" class="card-img-top" style="width: 50%;" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${info.name}</h5>
-          <h6 class=""><strong>ChipSet: ${
-            info.mainFeatures.chipSet || "Device Dosn't have ChipSet"
-          }</strong></h6>
-          <p class="card-text"><strong>Memory:- </strong>${
-            info.mainFeatures.memory
-          }
-          </p>
-          <p class="card-text">
-          <strong>Futures</strong>
-          <ul>
-          <li>${info.mainFeatures.sensors[0]}</li>
-          <li>${info.mainFeatures.sensors[1]}</li>
-          <li>${info.mainFeatures.sensors[2]}</li>
-          <li>${info.mainFeatures.sensors[3]}</li>
-        </ul>
-      </p>
-          <p class="card-text"><strong>Releas Date:-</strong> ${
-            info.releaseDate || " not found"
-          }</p>
-          <p class="card-text"><strong>"Others"</strong>
-          <ul>
-          <li>${info?.others?.WLAN || "others not found"}</li>
-          <li>${info?.others?.Bluetooth || "others not found"}</li>
-          <li>${info?.others?.GPS || "others not found"}</li>
-          <li>${info?.others?.NFC || "others not found"}</li>
-        </ul></p>
-        
-        </div>
-        
+
+  <div class="card w-75 mx-auto" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${info.image}" class="img-fluid" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${info.name}</h5>
+        <h6 class=""><strong>ChipSet: ${
+          info.mainFeatures.chipSet || "Device Dosn't have ChipSet"
+        }</strong></h6>
+        <p class="card-text"><strong>Memory:- </strong>${
+          info.mainFeatures.memory
+        }
+        </p>
+        <p class="card-text">
+        <strong>Futures</strong>
+        <ul>
+        <li>${info.mainFeatures.sensors[0]}</li>
+        <li>${info.mainFeatures.sensors[1]}</li>
+        <li>${info.mainFeatures.sensors[2]}</li>
+        <li>${info.mainFeatures.sensors[3]}</li>
+      </ul>
+    </p>
+        <p class="card-text"><strong>Releas Date:-</strong> ${
+          info.releaseDate || " not found"
+        }</p>
+        <p class="card-text"><strong>"Others"</strong>
+        <ul>
+        <li>${info?.others?.WLAN || "others not found"}</li>
+        <li>${info?.others?.Bluetooth || "others not found"}</li>
+        <li>${info?.others?.GPS || "others not found"}</li>
+        <li>${info?.others?.NFC || "others not found"}</li>
+      </ul></p>
       </div>
-    </div>`;
+    </div>
+  </div>
+</div>
+
+    `;
   hello.appendChild(div);
 };
