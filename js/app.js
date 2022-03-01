@@ -1,30 +1,40 @@
+// <====! start here ====>
+
 const buttonSearch = () => {
   const searchValue = document.getElementById("searchArea");
   const searchVal = searchValue.value;
   searchValue.value = "";
+  const hello = document.getElementById("detailsContainer");
+  hello.textContent = "";
   const parentDiv = document.getElementById("allPhone");
   parentDiv.textContent = "";
-  if (isNaN(searchVal) === false) {
-    searchValue.setAttribute("placeHolder", "please enter a phone name");
-    alert("please enter a phone name");
-    //     const parentDiv = document.getElementById("allPhone");
-    //     const div = document.createElement("div");
 
-    //     div.innerHTML = `
-    //     <div class="alert alert-danger" role="alert">
-    //     please enter a coreect phone name!
-    // </div>`;
-    //     parentDiv.appendChild(div);
-  } else {
+  // <====! Error Handeling  ====>
+
+  if (searchVal == "iphone" || searchVal == "samsung" || searchVal == "oppo") {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchVal}`;
     fetch(url)
       .then((res) => res.json())
       .then((myData) => showPhones(myData.data));
+  } else {
+    searchValue.setAttribute("placeHolder", "please enter a phone name");
+    alert("please enter a phone name");
+    const parentDiv = document.getElementById("allPhone");
+    const div = document.createElement("div");
+
+    div.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+        please enter a correct phone name!
+    </div>`;
+    parentDiv.appendChild(div);
   }
 };
 
+// <====! showPhones  ====>
+
 const showPhones = (phones) => {
-  for (const phone of phones) {
+  const firstTwintyData = phones.slice(0, 20);
+  for (const phone of firstTwintyData) {
     const parentDiv = document.getElementById("allPhone");
     const div = document.createElement("div");
 
@@ -35,13 +45,7 @@ const showPhones = (phones) => {
         <div class="card-body">
           <h5 class="card-title">${phone.phone_name}</h5>
           <h6 class=""><strong>brand: ${phone.brand}</strong></h6>
-          <p class="card-text">${
-            phone.releaseDate || "Releas Date not found"
-          }</p>
-          <button class="btn btn-primary" onclick="details('${
-            phone.slug
-          }')">Details</button>
-          <button class="btn btn-danger">Danger</button>
+          <button class="btn btn-primary" onclick="details('${phone.slug}')">Details</button>
         </div>
         
       </div>
@@ -49,6 +53,7 @@ const showPhones = (phones) => {
     parentDiv.appendChild(div);
   }
 };
+// <====! Details   ====>
 
 const details = (id) => {
   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -73,13 +78,29 @@ const detailsPopUp = (info) => {
           <h6 class=""><strong>ChipSet: ${
             info.mainFeatures.chipSet || "Device Dosn't have ChipSet"
           }</strong></h6>
-          <p class="card-text">${info.mainFeatures.memory}</p>
-          <p class="card-text">${
-            info.mainFeatures.sensors || "Sensor is not found"
+          <p class="card-text"><strong>Memory:- </strong>${
+            info.mainFeatures.memory
+          }
+          </p>
+          <p class="card-text">
+          <strong>Futures</strong>
+          <ul>
+          <li>${info.mainFeatures.sensors[0]}</li>
+          <li>${info.mainFeatures.sensors[1]}</li>
+          <li>${info.mainFeatures.sensors[2]}</li>
+          <li>${info.mainFeatures.sensors[3]}</li>
+        </ul>
+      </p>
+          <p class="card-text"><strong>Releas Date:-</strong> ${
+            info.releaseDate || " not found"
           }</p>
-          <p class="card-text">${
-            info.mainFeatures.releaseDate || "Releas Date not found"
-          }</p>
+          <p class="card-text"><strong>"Others"</strong>
+          <ul>
+          <li>${info.others.WLAN}</li>
+          <li>${info.others.Bluetooth}</li>
+          <li>${info.others.GPS}</li>
+          <li>${info.others.NFC}</li>
+        </ul></p>
         
         </div>
         
